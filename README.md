@@ -94,7 +94,7 @@ There were more than 5 failed login attempts from 172.16.14.3 on Feb 24, 2024, s
 
 Setting up the servers to send their logs to the Log server required different configuration as one server is Microsoft IIS and the other is Apache.
 
-### Settging up the log forwarding on Windows Server 2022 for ISS
+### Setting up the log forwarding on Windows Server 2022 for ISS
 
 A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, We need to ensure that it is contantly run in the background each time the server starts. To do this we Create a new Task in Windows Task Scheduler with the following properties:
 - Description: Send IIS logs to log server
@@ -104,49 +104,59 @@ A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). On
 - Arguments: -ExecutionPolicy Bypass -File “C:\Users\Administrator\send_iis_logs.ps1”
 - Run: At startup, whether user is logged on or not and with highest privileges
 
+### Setting up the log forwarding on Ubuntu 20.04.6 LTS for Apache2
 
+Setting up log forwardingh on Linux is a lot easier than on Windows and required very little setup. All that's needed is to install `rsyslog` and edit the config file in `/etc/rsyslog.conf` by simply adding:
 
-
-
-Each time a new event is recorded, a record is kept in a specific location.
-•	Potential output for:
-o	Brute force on Thursday ( add why)
-o	Failed logins outside of Thursday ( add why)
-o	Number of failed logins per IP address ( add why)
-o	Attempted access to non-existent pages ( add why)
-o	List of Ips that successfully logged in
-Documentation
-•	Where will I save the raw data and how will I process it for escalation to management
-Unusual behaviour
-•	What is unusual – why is it a concern
-Potential Iterations
-•	Add monitoring for bandwidth usage to monitor potential data exfiltration
-
-•	Recommned disableing the login page after thurdays
-•	Recommend Geo-IP lookup to prevent anyone outside of canaad accessing the page
-
-
-
-
-
-New Task Created in Task Scheduler with the following attributes:
-Name: SendIISLogs
-Description: Send IIS logs to log server
-Start: When the computer starts
-Action: Start a program
-Program/Script: C:\Users\Administrator\SendIISLogs.ps1
-Arguments: -ExecutionPolicy Bypass -File “C:\Users\Administrator\SendIISLogs.ps1”
-Run: At startup, whether user is logged on or not and with highest privileges
-
-
-
-
-Service set up on Linux Web server to forward logs to Log Server
-rsyslog installed on server and config file at /etc/rsyslog.conf edited to include the following:
+```
 module(load="imfile" PollingInterval="10" statefile.directory="/var/spool/rsyslog")
 input(type="imfile" File="/var/log/apache2/*.log" Tag="apache_logs" Severity="info" Facility="local1")
-local1.* @172.16.14.51:514
+local1.* @172.16.14.51.514
+```
+
+### Setting up the Log Server on Kali-Linux
+
+Similarly, setting up the Kali server to recevie the logs was relatively easy. Installing `rsyslog` was required followed by 
+
+```
+$template IISLogFormat, "/var/log/iis/%HOSTNAME%.log"
+*.* ?IISLogFormat
+```
+
+Once set up the Log server started receiving logs from both web servers ready for processing.
 
 
-This service runs continually and will forward all logs to the log server
+## Unusual Behaviour
+
+Before starting to code up how to process the iuncoming log files, we need to determine how we'll need to decide what sort of activity requires monitoring, followed by what activity would require immediate attention.
+
+We decided that  the following could be considered to be Indicators or Attack:
+
+- Multiple Failed log in attempts on Thursdays
+  As the service provided by **Turn a New Leaf** requires it's clients to log in each Thursday, there would naturally be failed login attempts for variouys reasons, however, a large number could indicate an attack.
+- Any login attempts on Friday through Wednesday
+  As the Service is only intended for use on Thursdays, any failed login attempts on other days of the week could indicate an attmpted attack.
+- Attempted access to non-existent pages
+  One way that a threat actor could possibly try attain initial Access would be to locate a web page through reconnaissance on one of the servers that is no intended for public access and then try gain access via logging in on that page.
+
+Potential Iterations
+
+As this is an initial monitoring solution, regular meetings should be held to determin whether the implemeted monitoring is stringent enough or if too many false-positives are being generated. Further fine tuning could make the monitoring more effective. 
+
+More thought should be investied in this monitoring solution with specific regards to further monitoring in other aspects of the web site. these could include:
+
+- Bandwidth monitoring:
+  Any spikes in the bandwidth usage could indicate a DDoS attack or prolonged increase in data throughput could indicate attempted data exfiltration.
+- GEO-IP monitoring:
+  As the only logins are expecte to come from local rural communities, there is no need to allow any access the the web site from anywhere that is not in Canada.
+  Further, we could even create a whitl-list of allowed IP addresses if it is plausible, as opposed to black-listing non-Canadian IP ranges.
+
+## Further Mitigation
+
+As the web site is only used by the public on Thursdays, there is no reason to allow anyone to view the web pages on the other days of the week. Some ways to make the site more secure would be to:
+- Shut off the servers on Friday morning shortly after midnight, and then bring them online again Just before midnight on Wednesday night.
+- A less-severe approach would be to lock down the HTTP ports (80 & 443) during the inactive hours.
+- If the above is still too severe, simply disabling the log-in fields during those times would still make the site slightly more secure.
+
+
 
