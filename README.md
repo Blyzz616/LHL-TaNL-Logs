@@ -140,7 +140,11 @@ Once set up the Log server started receiving logs from both web servers ready fo
 
 ### Log File Processing
 
-To process the logs, two script are run at boot time and never stop. Those scripts are located [here (Apache)](apache.sh) and [here (IIS)](iis.sh). These scripts are identical, except for the fact that they monitor the logs from their respective web servers. At their core, they watch the incoming logs in real-time and search for key-words. When those key-words are located, some processing takes place and outputs human-readable log files making further investigation much easier should it be required. There is also further logic to take action by sending emails to the log analyst should certain limits be reached.
+To process the logs, two script are run at boot time and never stop. Those scripts are located [here (Apache)](apache.sh) and [here (IIS)](iis.sh). These scripts are identical, except for the fact that they monitor the logs from their respective web servers. At their core, they watch the incoming logs in real-time and search for key-words. When those key-words are located, some processing takes place and outputs human-readable log files making further investigation much easier should it be required. There is also further logic to take action by sending emails to the log analyst should certain limits be reached. These scripts are also run in their own screen instances so that they cannot accidentally be shut down.
+
+### Redundancy
+
+As it is critical to have the scripts running on Thursdays, there is an additional check that is run on Wednesday, 10 minutes before midnight. This script is located [here](double-check.sh). It searches the currently running processes on the Log Server and ensures that the monitoring scripts (apache.sh and iis.sh) are both running. If the log  processing scripts are not running, the script-monitoring script, initiates them again.
 
 ### Weekly managerial email
 
