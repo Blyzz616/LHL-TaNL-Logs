@@ -52,7 +52,7 @@ The output for both of the scripts is identical however, saving the human-readab
 
 ### For page-not-found errors:
 
-/home/user/logMonitor/404/<ip address>/<date>.log
+/home/user/logMonitor/404/\<ip address\>/\<date\>.log
 This breaks down the logs into directories based on the incoming IP and then further down into individual files based on the date of the incoming request. Each log fill will keep the record of each page request and the first line at the top of each file will have the total number of page requests for that day.
 
 example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
