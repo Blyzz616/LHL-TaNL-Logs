@@ -1,8 +1,12 @@
 # Workflow:
 
+
+
 ## Purpose:
 
 The purpose of this presentation is to explain the processes and steps taken in monitoring the log files from the two live web servers in order to identify any problems and/or any indicators of attack.
+
+
 
 ### What is monitored:
 
@@ -17,6 +21,8 @@ The log files for both of these web servers are being monitored for any unusual 
 - Logins occurring outside of the expected times
 - Failed page requests (404s)
 
+
+
 ### When does monitoring occur:
 
 While there are specific times that are of interest to the core function of Turn a New Leaf, the servers are monitored on a continual basis, 24 hours a day, 7 days a week.
@@ -28,16 +34,19 @@ The times of particular interest are:
 - Thursday – failed logs with constant time between them (build logic) (2)
 - Thursday – excessive failed logins in short time (2)
 
+
+
 ## Programming:
 
 In the course of setting up the monitoring of the web server logs for Turn a New Leaf, three different operating systems were used. The main Operating system for monitoring all of the log files is Kali Linux. The 2 web servers are running Windows Server 2022 on one and Ubuntu 20.04.6 LTS on the other
 
-### Windows
 
+
+### Windows
 Programming on the Windows web server was required to send the logs through to the Kali-Linux Log server. This was accomplished using Windows PowerShell and that script is being implemented on an on-going basis by Windows Task Scheduler.
 
-### Ubuntu
 
+### Ubuntu
 Programming on the Ubuntu web server was conducted using SublimeText3 IDE and using the BASH scripting language. The script is run by default each time the server powers on by using Crontab.
 
 ### Kali-Linux
