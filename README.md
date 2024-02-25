@@ -165,7 +165,7 @@ We decided that  the following could be considered to be Indicators or Attack:
   As the Service is only intended for use on Thursdays, any failed login attempts on other days of the week could indicate an attempted attack.
 - Attempted access to non-existent pages
   
-  One way that a threat actor could possibly try attain initial Access would be to locate a web page through reconnaissance on one of the servers that is no intended for public access and then try gain access via logging in on that page.
+  One way that a threat actor could possibly try attain Initial Access[^5] would be to locate a web page through reconnaissance on one of the servers that is no intended for public access and then try gain access via logging in on that page.
 
 Potential Iterations
 
@@ -195,3 +195,4 @@ As the web site is only used by the public on Thursdays, there is no reason to a
 [^2]: [HTTP Status codes](https://www.semrush.com/blog/http-status-codes/) are used by web servers to differentiate different types of reponses. In this case, we've used 401 - 'Unauthorised' and 404 - 'Page not Found'.
 [^3]: All of the BASH script was coded by hand without any commenting. This is bad practise as it would be very hadrd for anyone else to decypher the code at a later point. So [Chat GPT](https://chat.openai.com/) was used to comment the code automatically.
 [^4]: The contents of this page on [Lazy Admin](https://lazyadmin.nl/powershell/how-to-create-a-powershell-scheduled-task/) runs through the process of setting up the Windows Task Scheduler to automatically run a script at system boot.
+[^5]: The [MITRE ATT&CK Framework](https://attack.mitre.org/) Lists a number of ways a threat actor can gain [Initial Access](https://attack.mitre.org/tactics/TA0001), however, in this instance we are specifically interested in [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/).
