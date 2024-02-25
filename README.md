@@ -76,7 +76,7 @@ Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, 
 
 ### For failed login attempts:
 
-/home/logMonitor/401/\<ip addres\>/\<date\>.log
+/home/logMonitor/401/\<ip address\>/\<date\>.log
 As with the page-not-found errors, these events will be saved in a similar fashion. However, with these logs we also keep a record of the time difference between the failed login events. If there are more than 5 failed login events from any specific address on a day, an email is generated containing the relevant details of the failed login events.
 
 example of /home/user/logMonitor/401/172.16.14.3/2024-02-24.log
