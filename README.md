@@ -44,12 +44,12 @@ Programming on the Windows web server was required to send the logs through to t
 
 
 ### Ubuntu
-Programming on the Ubuntu web server was conducted using SublimeText3 IDE and using the BASH scripting language. The script is run by default each time the server powers on by using Crontab[^1].
+Programming on the Ubuntu web server was conducted using SublimeText3 IDE.
 
 
 ### Kali-Linux
 
-Similar to the Ubuntu web server, the programming was completed on SublimeText3 IDE and run using the BASH scripting language.
+Similar to the Ubuntu web server, the programming was completed on SublimeText3 IDE and run using the BASH[^3] scripting language. The script is run by default each time the server powers on by using Crontab[^1].
 
 ## Expected output
 
