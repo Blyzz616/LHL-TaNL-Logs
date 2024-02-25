@@ -18,45 +18,63 @@ The log files for both of these web servers are being monitored for any unusual 
 - Failed page requests (404s)
 
 ### When does monitoring occur:
+
 While there are specific times that are of interest to the core function of Turn a New Leaf, the servers are monitored on a continual basis, 24 hours a day, 7 days a week.
+
 The times of particular interest are:
-•	Friday midnight (00:00AM) to Wednesday Midnight (11:59PM)
-o	All login-attempts are of concern
-•	Thursday (00:00AM – 11:59PM) – failed logs
-•	Thursday – failed logs with constant time between them (build logic) (2)
-•	Thursday – excessive failed logins in short time (2)
-Programming:
+- 	Friday midnight (00:00AM) to Wednesday Midnight (11:59PM)
+  - All login-attempts are of concern
+- Thursday (00:00AM – 11:59PM) – failed logs
+- Thursday – failed logs with constant time between them (build logic) (2)
+- Thursday – excessive failed logins in short time (2)
+
+## Programming:
+
 In the course of setting up the monitoring of the web server logs for Turn a New Leaf, three different operating systems were used. The main Operating system for monitoring all of the log files is Kali Linux. The 2 web servers are running Windows Server 2022 on one and Ubuntu 20.04.6 LTS on the other
-Windows
+
+### Windows
+
 Programming on the Windows web server was required to send the logs through to the Kali-Linux Log server. This was accomplished using Windows PowerShell and that script is being implemented on an on-going basis by Windows Task Scheduler.
-Ubuntu
+
+### Ubuntu
+
 Programming on the Ubuntu web server was conducted using SublimeText3 IDE and using the BASH scripting language. The script is run by default each time the server powers on by using Crontab.
-Kali-Linux
+
+### Kali-Linux
+
 Similar to the Ubuntu web server, the programming was completed on SublimeText3 IDE and run using the BASH scripting language.
-Expected output
+
+## Expected output
+
 All of the server web logs are sent to the Kali Linux log server for processing. The logs from the Windows server and the Ubuntu server are processed separately, each by its own script. This is necessary because the two servers produce different types of logs, each with its own syntax.
+
 The output for both of the scripts is identical however, saving the human-readable information in the following structure:
-For page-not-found errors:
+
+### For page-not-found errors:
+
 /home/user/logMonitor/404/<ip address>/<date>.log
 This breaks down the logs into directories based on the incoming IP and then further down into individual files based on the date of the incoming request. Each log fill will keep the record of each page request and the first line at the top of each file will have the total number of page requests for that day.
-example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
-1
-Failed Page: /admin-login.php
-From IP address: 172.16.14.3
-Time: 19:35:12
-Date: Feb 24, 2024 – Sat
-Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
 
-For failed login attempts:
+example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
+    1
+    Failed Page: /admin-login.php
+    From IP address: 172.16.14.3
+    Time: 19:35:12
+    Date: Feb 24, 2024 – Sat
+    Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+
+### For failed login attempts:
+
 /home/logMonitor/401/<ip addres>/<date>.log
 As with the page-not-found errors, these events will be saved in a similar fashion. However, with these logs we also keep a record of the time difference between the failed login events. If there are more than 5 failed login events from any specific address on a day, an email is generated containing the relevant details of the failed login events.
+
 example of /home/user/logMonitor/401/172.16.14.3/2024-02-24.log
-3
-Time since last fail: 15
-From IP address: 172.16.14.3
-Time: 12:13:25
-Date: Feb 24, 2024 – Sat
-Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+    3
+    Time since last fail: 15
+    From IP address: 172.16.14.3
+    Time: 12:13:25
+    Date: Feb 24, 2024 – Sat
+    Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
 
 Example of generated email: 
 From: LogServer <kali@turnanewleaf.ca>
