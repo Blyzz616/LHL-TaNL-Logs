@@ -109,7 +109,7 @@ Setting up the servers to send their logs to the Log server required different c
 
 ### Setting up the log forwarding on Windows Server 2022 for ISS
 
-A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, We need to ensure that it is contantly run in the background each time the server starts. To do this we Create a new Task in Windows Task Scheduler with the following properties:
+A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, we needed to ensure that it was constantly run in the background each time the server started. To do this we create a new Task in Windows Task Scheduler with the following properties:
 - Description: Send IIS logs to log server
 - Start: When the computer starts
 - Action: Start a program
@@ -129,7 +129,7 @@ local1.* @172.16.14.51.514
 
 ### Setting up the Log Server on Kali-Linux
 
-Similarly, setting up the Kali server to recevie the logs was relatively easy. Installing `rsyslog` was required followed by 
+Similarly, setting up the Kali server to receive the logs was relatively easy. Installing `rsyslog` was required followed by 
 
 ```
 $template IISLogFormat, "/var/log/iis/%HOSTNAME%.log"
@@ -144,33 +144,38 @@ To process the logs, two script are run at boot time and never stop. Those scrip
 
 ### Weekly managerial email
 
-As a part of the process of monirtoring, a weekly email is generated based on the logs generated over the last week and that email is then sent to the manager. The script that manages that is located [here](weekly.sh). This script puts together all the statistics from the last week and sends it off to the manager on Friday morning.
+As a part of the process of monritoring, a weekly email is generated based on the logs generated over the last week and that email is then sent to the manager. The script that manages that is located [here](weekly.sh). This script puts together all the statistics from the last week and sends it off to the manager on Friday morning.
 
 
 ## Unusual Behaviour
 
-Before starting to code up how to process the iuncoming log files, we need to determine how we'll need to decide what sort of activity requires monitoring, followed by what activity would require immediate attention.
+Before starting to code up how to process the incoming log files, we need to determine how we'll need to decide what sort of activity requires monitoring, followed by what activity would require immediate attention.
 
 We decided that  the following could be considered to be Indicators or Attack:
 
-- Multiple Failed log in attempts on Thursdays
-  As the service provided by **Turn a New Leaf** requires it's clients to log in each Thursday, there would naturally be failed login attempts for variouys reasons, however, a large number could indicate an attack.
+- Multiple Failed login attempts on Thursdays
+  
+  As the service provided by **Turn a New Leaf** requires its clients to log in each Thursday, there would naturally be failed login attempts for various reasons, however, a large number could indicate an attack.
 - Any login attempts on Friday through Wednesday
-  As the Service is only intended for use on Thursdays, any failed login attempts on other days of the week could indicate an attmpted attack.
+  
+  As the Service is only intended for use on Thursdays, any failed login attempts on other days of the week could indicate an attempted attack.
 - Attempted access to non-existent pages
+  
   One way that a threat actor could possibly try attain initial Access would be to locate a web page through reconnaissance on one of the servers that is no intended for public access and then try gain access via logging in on that page.
 
 Potential Iterations
 
-As this is an initial monitoring solution, regular meetings should be held to determin whether the implemeted monitoring is stringent enough or if too many false-positives are being generated. Further fine tuning could make the monitoring more effective. 
+As this is an initial monitoring solution, regular meetings should be held to determine whether the implemented monitoring is stringent enough or if too many false-positives are being generated. Further fine tuning could make the monitoring more effective. 
 
-More thought should be investied in this monitoring solution with specific regards to further monitoring in other aspects of the web site. these could include:
+More thought should be invested in this monitoring solution with specific regards to further monitoring in other aspects of the web site. these could include:
 
 - Bandwidth monitoring:
+  
   Any spikes in the bandwidth usage could indicate a DDoS attack or prolonged increase in data throughput could indicate attempted data exfiltration.
 - GEO-IP monitoring:
-  As the only logins are expecte to come from local rural communities, there is no need to allow any access the the web site from anywhere that is not in Canada.
-  Further, we could even create a whitl-list of allowed IP addresses if it is plausible, as opposed to black-listing non-Canadian IP ranges.
+  
+  As the only logins are expected to come from local rural communities, there is no need to allow any access to the web site from anywhere that is not in Canada.
+  Further, we could even create a white-list of allowed IP addresses if it is plausible, as opposed to black-listing non-Canadian IP ranges.
 
 ## Further Mitigation
 
