@@ -61,7 +61,7 @@ The output for both of the scripts is identical however, saving the human-readab
 
 ### For page-not-found errors:
 
-/home/user/logMonitor/404/\<ip address\>/\<date\>.log
+/home/user/logMonitor/404/\<ip address\>/\<date\>.log [^2]
 
 This breaks down the logs into directories based on the incoming IP and then further down into individual files based on the date of the incoming request. Each log fill will keep the record of each page request and the first line at the top of each file will have the total number of page requests for that day.
 
@@ -77,7 +77,7 @@ Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, 
 
 ### For failed login attempts:
 
-/home/logMonitor/401/\<ip address\>/\<date\>.log
+/home/logMonitor/401/\<ip address\>/\<date\>.log [^2]
 
 As with the page-not-found errors, these events will be saved in a similar fashion. However, with these logs we also keep a record of the time difference between the failed login events. If there are more than 5 failed login events from any specific address on a day, an email is generated containing the relevant details of the failed login events.
 
@@ -192,3 +192,4 @@ As the web site is only used by the public on Thursdays, there is no reason to a
 
 
 [^1]: [crontab Guru](https://crontab.guru/) can be used to get the correct formatting for Cronjobs (scheduling tasks) run in a linux environment. 
+[^2]: [HTTP Status codes](https://www.semrush.com/blog/http-status-codes/) are used by web servers to differentiate different types of reponses. In this case, we've used 401 - 'Unauthorised' and 404 - 'Page not Found'.
