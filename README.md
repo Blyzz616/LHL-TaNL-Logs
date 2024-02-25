@@ -109,7 +109,7 @@ Setting up the servers to send their logs to the Log server required different c
 
 ### Setting up the log forwarding on Windows Server 2022 for ISS
 
-A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, we needed to ensure that it was constantly run in the background each time the server started. To do this we create a new Task in Windows Task Scheduler with the following properties:
+A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, we needed to ensure that it was constantly run in the background each time the server started[^4]. To do this we create a new Task in Windows Task Scheduler with the following properties:
 - Description: Send IIS logs to log server
 - Start: When the computer starts
 - Action: Start a program
@@ -194,3 +194,4 @@ As the web site is only used by the public on Thursdays, there is no reason to a
 [^1]: [crontab Guru](https://crontab.guru/) can be used to get the correct formatting for Cronjobs (scheduling tasks) run in a linux environment. 
 [^2]: [HTTP Status codes](https://www.semrush.com/blog/http-status-codes/) are used by web servers to differentiate different types of reponses. In this case, we've used 401 - 'Unauthorised' and 404 - 'Page not Found'.
 [^3]: All of the BASH script was coded by hand without any commenting. This is bad practise as it would be very hadrd for anyone else to decypher the code at a later point. So [Chat GPT](https://chat.openai.com/) was used to comment the code automatically.
+[^4]: The contents of this page on [Lazy Admin](https://lazyadmin.nl/powershell/how-to-create-a-powershell-scheduled-task/) runs through the process of setting up the Windows Task Scheduler to automatically run a script at system boot.
