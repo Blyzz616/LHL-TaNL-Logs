@@ -67,7 +67,7 @@ example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
 
 ### For failed login attempts:
 
-/home/logMonitor/401/<ip addres>/<date>.log
+/home/logMonitor/401/\<ip addres\>/\<date\>.log
 As with the page-not-found errors, these events will be saved in a similar fashion. However, with these logs we also keep a record of the time difference between the failed login events. If there are more than 5 failed login events from any specific address on a day, an email is generated containing the relevant details of the failed login events.
 
 example of /home/user/logMonitor/401/172.16.14.3/2024-02-24.log
@@ -89,6 +89,23 @@ Subject: Suspicious Failed Logins
 Data:
 There were more than 5 failed login attempts from 172.16.14.3 on Feb 24, 2024, starting at 12:13:25. Please investigate and escalate if required.
 ```
+
+## Documentation
+
+Setting up the servers to send their logs to the Log server required different configuration as one server is Microsoft IIS and the other is Apache.
+
+### Settging up the log forwarding on Windows Server 2022 for ISS
+
+A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, We need to ensure that it is contantly run in the background each time the server starts. To do this we Create a new Task in Windows Task Scheduler with the following properties:
+- Description: Send IIS logs to log server
+- Start: When the computer starts
+- Action: Start a program
+- Program/Script: C:\Users\Administrator\send_iis_logs.ps1
+- Arguments: -ExecutionPolicy Bypass -File “C:\Users\Administrator\send_iis_logs.ps1”
+- Run: At startup, whether user is logged on or not and with highest privileges
+
+
+
 
 
 Each time a new event is recorded, a record is kept in a specific location.
