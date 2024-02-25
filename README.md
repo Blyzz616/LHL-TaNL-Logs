@@ -150,6 +150,24 @@ As it is critical to have the scripts running on Thursdays, there is an addition
 
 As a part of the process of monritoring, a weekly email is generated based on the logs generated over the last week and that email is then sent to the manager. The script that manages that is located [here](weekly.sh). This script puts together all the statistics from the last week and sends it off to the manager on Friday morning.
 
+An example of the email that would be sent to a manager would look like this:
+
+```
+From: LogServer <kali@turnanewleaf.ca>
+To: Management <manager@turnanewleaf.ca>
+Cc: Jim Sher <jim@turnanewleaf.ca>
+Subject: Weekly Log Summary
+
+Top 3 IP addresses for 404s over the last 7 days:
+192.168.1.100  : 35 attempts
+192.168.1.50   : 29 attempts
+192.168.1.200  : 24 attempts
+
+Top 3 IP addresses for 401s over the last 7 days:
+192.168.1.150  : 17 attempts
+192.168.1.80   : 12 attempts
+192.168.1.30   : 8 attempts
+```
 
 ## Unusual Behaviour
 
