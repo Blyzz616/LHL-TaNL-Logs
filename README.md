@@ -140,7 +140,7 @@ Once set up the Log server started receiving logs from both web servers ready fo
 
 ### Log File Processing
 
-To process the logs, two script are run at boot time[^1] and never stop. Those scripts are located [here (Apache)](apache.sh) and [here (IIS)](iis.sh). These scripts are identical, except for the fact that they monitor the logs from their respective web servers. At their core, they watch the incoming logs in real-time and search for key-words. When those key-words are located, some processing takes place and outputs human-readable log files making further investigation much easier should it be required. There is also further logic to take action by sending emails to the log analyst should certain limits be reached. These scripts are also run in their own screen instances so that they cannot accidentally be shut down.
+To process the logs, two script are run at boot time[^1] and never stop. Those scripts are located [here (Apache)](apache.sh) and [here (IIS)](iis.sh). These scripts are identical, except for the fact that they monitor the logs from their respective web servers. At their core, they watch the incoming logs in real-time and search for key-words using Regular Expressions[^6]. When those key-words are located, some processing takes place and outputs human-readable log files making further investigation much easier should it be required. There is also further logic to take action by sending emails to the log analyst should certain limits be reached. These scripts are also run in their own screen instances so that they cannot accidentally be shut down.
 
 ### Redundancy
 
@@ -196,3 +196,4 @@ As the web site is only used by the public on Thursdays, there is no reason to a
 [^3]: All of the BASH script was coded by hand without any commenting. This is bad practise as it would be very hadrd for anyone else to decypher the code at a later point. So [Chat GPT](https://chat.openai.com/) was used to comment the code automatically.
 [^4]: The contents of this page on [Lazy Admin](https://lazyadmin.nl/powershell/how-to-create-a-powershell-scheduled-task/) runs through the process of setting up the Windows Task Scheduler to automatically run a script at system boot.
 [^5]: The [MITRE ATT&CK Framework](https://attack.mitre.org/) Lists a number of ways a threat actor can gain [Initial Access](https://attack.mitre.org/tactics/TA0001), however, in this instance we are specifically interested in [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/).
+[^6]: The Regex in both the Apache and ISS scripts were tested and confirmed using [Regex101](https://regex101.com/)
