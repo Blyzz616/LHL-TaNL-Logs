@@ -110,12 +110,12 @@ Setting up the servers to send their logs to the Log server required different c
 ### Setting up the log forwarding on Windows Server 2022 for ISS
 
 A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). Once the script was saved, we needed to ensure that it was constantly run in the background each time the server started[^4]. To do this we create a new Task in Windows Task Scheduler with the following properties:
-- Description: Send IIS logs to log server
-- Start: When the computer starts
-- Action: Start a program
-- Program/Script: C:\Users\Administrator\send_iis_logs.ps1
-- Arguments: -ExecutionPolicy Bypass -File “C:\Users\Administrator\send_iis_logs.ps1”
-- Run: At startup, whether user is logged on or not and with highest privileges
+- Description: `Send IIS logs to log server`
+- Start: `When the computer starts`
+- Action: `Start a program`
+- Program/Script: `C:\Users\Administrator\send_iis_logs.ps1`
+- Arguments: `-ExecutionPolicy Bypass -File “C:\Users\Administrator\send_iis_logs.ps1”`
+- Run: `At startup, whether user is logged on or not and with highest privileges`
 
 ### Setting up the log forwarding on Ubuntu 20.04.6 LTS for Apache2
 
