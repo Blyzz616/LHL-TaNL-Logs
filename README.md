@@ -57,12 +57,12 @@ This breaks down the logs into directories based on the incoming IP and then fur
 
 example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
 ```
-    1
-    Failed Page: /admin-login.php
-    From IP address: 172.16.14.3
-    Time: 19:35:12
-    Date: Feb 24, 2024 – Sat
-    Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+1
+Failed Page: /admin-login.php
+From IP address: 172.16.14.3
+Time: 19:35:12
+Date: Feb 24, 2024 – Sat
+Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
 ```
 
 ### For failed login attempts:
@@ -72,12 +72,12 @@ As with the page-not-found errors, these events will be saved in a similar fashi
 
 example of /home/user/logMonitor/401/172.16.14.3/2024-02-24.log
 ```
-    3
-    Time since last fail: 15
-    From IP address: 172.16.14.3
-    Time: 12:13:25
-    Date: Feb 24, 2024 – Sat
-    Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+3
+Time since last fail: 15
+From IP address: 172.16.14.3
+Time: 12:13:25
+Date: Feb 24, 2024 – Sat
+Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
 ```
 
 Example of generated email: 
