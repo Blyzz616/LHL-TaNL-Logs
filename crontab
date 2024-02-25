@@ -21,7 +21,7 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-@reboot /home/kali/apache.sh > /dev/null 2>&1
-@reboot /home/kali/apache.sh > /dev/null 2>&1
+@reboot /usr/bin/screen -S "Apache" -d -m bash -c "/home/kali/apache.sh"
+@reboot /usr/bin/screen -S "Apache" -d -m bash -c "/home/kali/apache.sh"
 50 23 * * 3 /home/kali/double-check.sh > /dev/null 2>&1
 10 0 * * 5 /home/kali/weekly.sh > /dev/null 2>&1
