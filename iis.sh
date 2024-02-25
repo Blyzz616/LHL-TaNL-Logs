@@ -137,7 +137,7 @@ EOF
 }
 
 # Main loop to read log lines and process errors
-tail -fn0 /var/log/iis/user-pc.log | \
+tail -fn0 /var/log/iis/172.16.14.53.log | \
   while read -r LINE; do
     # Checking for 404 errors
     fourOHfour=$(echo "$LINE" | grep -cE 'HTTP\/[0-9]\.[0-9]\" 404')
