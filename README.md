@@ -7,7 +7,6 @@
 The purpose of this presentation is to explain the processes and steps taken in monitoring the log files from the two live web servers in order to identify any problems and/or any indicators of attack.
 
 
-
 ### What is monitored:
 
 There are 2 production web servers on the network that are publicly available and for the purpose of assisting the youth in a range of rural communities to seek employment.
@@ -22,7 +21,6 @@ The log files for both of these web servers are being monitored for any unusual 
 - Failed page requests (404s)
 
 
-
 ### When does monitoring occur:
 
 While there are specific times that are of interest to the core function of Turn a New Leaf, the servers are monitored on a continual basis, 24 hours a day, 7 days a week.
@@ -33,7 +31,6 @@ The times of particular interest are:
 - Thursday (00:00AM – 11:59PM) – failed logs
 - Thursday – failed logs with constant time between them (build logic) (2)
 - Thursday – excessive failed logins in short time (2)
-
 
 
 ## Programming:
@@ -49,6 +46,7 @@ Programming on the Windows web server was required to send the logs through to t
 ### Ubuntu
 Programming on the Ubuntu web server was conducted using SublimeText3 IDE and using the BASH scripting language. The script is run by default each time the server powers on by using Crontab.
 
+
 ### Kali-Linux
 
 Similar to the Ubuntu web server, the programming was completed on SublimeText3 IDE and run using the BASH scripting language.
@@ -58,6 +56,8 @@ Similar to the Ubuntu web server, the programming was completed on SublimeText3 
 All of the server web logs are sent to the Kali Linux log server for processing. The logs from the Windows server and the Ubuntu server are processed separately, each by its own script. This is necessary because the two servers produce different types of logs, each with its own syntax.
 
 The output for both of the scripts is identical however, saving the human-readable information in the following structure:
+
+
 
 ### For page-not-found errors:
 
@@ -99,6 +99,8 @@ Data:
 There were more than 5 failed login attempts from 172.16.14.3 on Feb 24, 2024, starting at 12:13:25. Please investigate and escalate if required.
 ```
 
+
+
 ## Documentation
 
 Setting up the servers to send their logs to the Log server required different configuration as one server is Microsoft IIS and the other is Apache.
@@ -115,7 +117,7 @@ A script was created in PowerShell. This is linked [here](send_iis_logs.ps1). On
 
 ### Setting up the log forwarding on Ubuntu 20.04.6 LTS for Apache2
 
-Setting up log forwardingh on Linux is a lot easier than on Windows and required very little setup. All that's needed is to install `rsyslog` and edit the config file in `/etc/rsyslog.conf` by simply adding:
+Setting up log forwarding on Linux is a lot easier than on Windows and required very little setup. All that's needed is to install `rsyslog` and edit the config file in `/etc/rsyslog.conf` by simply adding:
 
 ```
 module(load="imfile" PollingInterval="10" statefile.directory="/var/spool/rsyslog")
@@ -133,6 +135,14 @@ $template IISLogFormat, "/var/log/iis/%HOSTNAME%.log"
 ```
 
 Once set up the Log server started receiving logs from both web servers ready for processing.
+
+### Log File Processing
+
+To process the logs, two script are run at boot time and never stop. Those scripts are located [here (Apache)](apache.sh) and [here (IIS)](iis.sh). These scripts are identical, except for the fact that they monitor the logs from their respective web servers. At their core, they watch the incoming logs in real-time and search for key-words. When those key-words are located, some processing takes place and outputs human-readable log files making further investigation much easier should it be required. There is also further logic to take action by sending emails to the log analyst should certain limits be reached.
+
+### Weekly managerial email
+
+As a part of the process of monirtoring, a weekly email is generated based on the logs generated over the last week and that email is then sent to the manager. The script that manages that is located [here](weekly.sh). This script puts together all the statistics from the last week and sends it off to the manager on Friday morning.
 
 
 ## Unusual Behaviour
