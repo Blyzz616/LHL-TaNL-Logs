@@ -167,7 +167,7 @@ We decided that  the following could be considered to be Indicators or Attack:
   
   One way that a threat actor could possibly try attain Initial Access[^5] would be to locate a web page through reconnaissance on one of the servers that is no intended for public access and then try gain access via logging in on that page.
 
-Potential Iterations
+## Potential Iterations
 
 As this is an initial monitoring solution, regular meetings should be held to determine whether the implemented monitoring is stringent enough or if too many false-positives are being generated. Further fine tuning could make the monitoring more effective. 
 
