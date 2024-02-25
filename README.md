@@ -7,14 +7,15 @@ The purpose of this presentation is to explain the processes and steps taken in 
 ### What is monitored:
 
 There are 2 production web servers on the network that are publicly available and for the purpose of assisting the youth in a range of rural communities to seek employment.
-•	Internet Information Services (IIS) version 10.0.20348.1, running on a Windows Server 2022
-•	Apache/2.4.41, Running on Ubuntu 20.04.6 LTS
+
+- Internet Information Services (IIS) version 10.0.20348.1, running on a Windows Server 2022
+- Apache/2.4.41, Running on Ubuntu 20.04.6 LTS
 
 The log files for both of these web servers are being monitored for any unusual activity. This includes:
-•	Unusual Failed logins
-•	High number of failed logins
-•	Logins occurring outside of the expected times
-•	Failed page requests (404s)
+- Unusual Failed logins
+- High number of failed logins
+- Logins occurring outside of the expected times
+- Failed page requests (404s)
 
 ### When does monitoring occur:
 While there are specific times that are of interest to the core function of Turn a New Leaf, the servers are monitored on a continual basis, 24 hours a day, 7 days a week.
