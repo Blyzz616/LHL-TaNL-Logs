@@ -188,5 +188,7 @@ As the web site is only used by the public on Thursdays, there is no reason to a
 - A less-severe approach would be to lock down the HTTP ports (80 & 443) during the inactive hours.
 - If the above is still too severe, simply disabling the log-in fields during those times would still make the site slightly more secure.
 
+## Citations
+
 
 
