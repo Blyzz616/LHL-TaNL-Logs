@@ -15,9 +15,8 @@ There are 2 production web servers on the network that are publicly available an
 - Apache/2.4.41, Running on Ubuntu 20.04.6 LTS
 
 The log files for both of these web servers are being monitored for any unusual activity. This includes:
-- Unusual Failed logins
-- High number of failed logins
-- Logins occurring outside of the expected times
+- Any Failed logins on days that are not Tuhrsday
+- High number of failed logins on Thursdays
 - Failed page requests (404s)
 
 
@@ -26,9 +25,9 @@ The log files for both of these web servers are being monitored for any unusual 
 While there are specific times that are of interest to the core function of Turn a New Leaf, the servers are monitored on a continual basis, 24 hours a day, 7 days a week.
 
 The times of particular interest are:
-- 	Friday midnight (00:00AM) to Wednesday Midnight (11:59PM)
+- Friday midnight (00:00AM) to Wednesday Midnight (11:59PM)
   - All login-attempts are of concern
-- Thursday (00:00AM – 11:59PM) – failed logs
+- Thursday (00:00AM – 11:59PM) – failed login attempts
 - Thursday – failed logs with constant time between them (build logic) (2)
 - Thursday – excessive failed logins in short time (2)
 
