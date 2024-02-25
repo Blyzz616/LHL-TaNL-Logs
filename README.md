@@ -56,12 +56,14 @@ The output for both of the scripts is identical however, saving the human-readab
 This breaks down the logs into directories based on the incoming IP and then further down into individual files based on the date of the incoming request. Each log fill will keep the record of each page request and the first line at the top of each file will have the total number of page requests for that day.
 
 example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
+```
     1
     Failed Page: /admin-login.php
     From IP address: 172.16.14.3
     Time: 19:35:12
     Date: Feb 24, 2024 – Sat
     Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+```
 
 ### For failed login attempts:
 
@@ -69,20 +71,24 @@ example of /home/user/logMonitor/404/172.16.14.3/2024-02-24.log
 As with the page-not-found errors, these events will be saved in a similar fashion. However, with these logs we also keep a record of the time difference between the failed login events. If there are more than 5 failed login events from any specific address on a day, an email is generated containing the relevant details of the failed login events.
 
 example of /home/user/logMonitor/401/172.16.14.3/2024-02-24.log
+```
     3
     Time since last fail: 15
     From IP address: 172.16.14.3
     Time: 12:13:25
     Date: Feb 24, 2024 – Sat
     Useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36
+```
 
 Example of generated email: 
+```
 From: LogServer <kali@turnanewleaf.ca>
 To: Jim Sher <jim@turnanewleaf.ca>
 Cc:
 Subject: Suspicious Failed Logins
 Data:
 There were more than 5 failed login attempts from 172.16.14.3 on Feb 24, 2024, starting at 12:13:25. Please investigate and escalate if required.
+```
 
 
 Each time a new event is recorded, a record is kept in a specific location.
