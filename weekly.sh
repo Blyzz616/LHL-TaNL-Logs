@@ -80,4 +80,4 @@ top_3_401=$(echo "$FOO_RESULTS" | sort -k2 -nr | head -n 3)
 email_body="Top 3 IP addresses for 404s over the last 7 days:\n$top_3_404\n\nTop 3 IP addresses for 401s over the last 7 days:\n$top_3_401"
 
 # Send email
-echo -e "$email_body" | mail -s "Weekly Log Summary" "manager@turnanewleaf.ca"
+echo -e "$email_body" | mail -s "Weekly Log Summary" -c "jim@turnanewleaf.ca" "manager@turnanewleaf.ca"
