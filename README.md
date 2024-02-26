@@ -14,7 +14,7 @@
   - [For failed login attempts](#for-failed-login-attempts)
 - [Documentation](#documentation)
   - [Setting up the log forwarding on Windows Server 2022 for ISS](#setting-up-the-log-forwarding-on-windows-server-2022-for-iss)
-  - [Setting up the log forwarding on Ubuntu 20.04.6 LTS for Apache2]([#setting-up-the-log-forwarding-on-ubuntu-20.04.6-lts-for-apache2](#setting-up-the-log-forwarding-on-ubuntu-20046-lts-for-apache2)
+  - [Setting up the log forwarding on Ubuntu 20.04.6 LTS for Apache2](#setting-up-the-log-forwarding-on-ubuntu-20046-lts-for-apache2)
   - [Setting up the Log Server on Kali-Linux](#setting-up-the-log-server-on-kali-linux)
   - [Log File Processing](#log-file-processing)
   - [Redundancy](#redundancy)
