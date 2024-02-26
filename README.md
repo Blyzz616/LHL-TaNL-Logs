@@ -26,11 +26,10 @@
 
 # Executive Summary
 
-# Workflow:
-
-## Executive Summary:
-
 Log forwarding has been set up for both the Web servers in the environment. These have been set up to forward to the Kali system where active monitoring happens. Certain limits have been instituted to raise flags and alert the IT team of tese events. Additionally, a weekly ermail will be sent to management with the weeks statistics.
+
+
+# Workflow:
 
 ## Purpose:
 
