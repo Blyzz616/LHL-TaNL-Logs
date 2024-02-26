@@ -1,6 +1,28 @@
 # Workflow:
 
+## Contents
 
+- Purpose
+  - What is monitored
+  - When does mnonitoring occur
+- Programming
+  - Windows
+  - Ubuntu
+  - Kali-Linux
+- Expected output
+  - For page-not-found errors:
+  - For failed login attempts:
+- Documentation
+  - Setting up the log forwarding on Windows Server 2022 for ISS
+  - Setting up the log forwarding on Ubuntu 20.04.6 LTS for Apache2
+  - Setting up the Log Server on Kali-Linux
+  - Log File Processing
+  - Redundancy
+  - Weekly managerial email
+- Unusual Behaviour
+- Potential Iterations
+- Further Mitigation
+- Citations
 
 ## Purpose:
 
