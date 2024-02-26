@@ -4,7 +4,7 @@
 - [Workflow](#workflow)
 - [Purpose](#purpose)
   - [What is monitored](#what-is-monitored)
-  - [When does mnonitoring occur]()
+  - [When does mnonitoring occur](#when-does-monitoring-occur)
 - [Programming](#programming)
   - [Windows](#windows)
   - [Ubuntu](#ubuntu)
