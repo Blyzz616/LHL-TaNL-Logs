@@ -209,7 +209,7 @@ As the web site is only used by the public on Thursdays, there is no reason to a
 
 
 [^1]: [crontab Guru](https://crontab.guru/) can be used to get the correct formatting for Cronjobs (scheduling tasks) run in a linux environment. 
-[^2]: [HTTP Status codes](https://www.semrush.com/blog/http-status-codes/) are used by web servers to differentiate different types of reponses. In this case, we've used 401 - 'Unauthorised' and 404 - 'Page not Found'.
+[^2]: [HTTP Status codes](https://www.semrush.com/blog/http-status-codes/) are used by web servers to differentiate different types of reponses. In this case, we've used 401 - 'Unauthorised' and 404 - 'Page not Found'. The 500 errors (Server Errors) do not indicate failed logins or attempted attakes, so those were left out.
 [^3]: All of the BASH script was coded by hand without any commenting. This is bad practise as it would be very hadrd for anyone else to decypher the code at a later point. So [Chat GPT](https://chat.openai.com/) was used to comment the code automatically.
 [^4]: The contents of this page on [Lazy Admin](https://lazyadmin.nl/powershell/how-to-create-a-powershell-scheduled-task/) runs through the process of setting up the Windows Task Scheduler to automatically run a script at system boot.
 [^5]: The [MITRE ATT&CK Framework](https://attack.mitre.org/) Lists a number of ways a threat actor can gain [Initial Access](https://attack.mitre.org/tactics/TA0001), however, in this instance we are specifically interested in [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/).
