@@ -1,5 +1,5 @@
 # Workflow:
-
+- [Executive Summary](#executive-summary)
 - [Purpose](#purpose)
   - [What is monitored](#what-is-monitored)
   - [When does mnonitoring occur]()
@@ -21,6 +21,10 @@
 - [Potential Iterations](#potential-iterations)
 - [Further Mitigation](#further-mitigation)
 - [Citations](#citations)
+
+## Executive Summary:
+
+Log forwarding has been set up for both the Web servers in the environment. These have been set up to forward to the Kali system where active monitoring happens. Certain limits have been instituted to raise flags and alert the IT team of tese events. Additionally, a weekly ermail will be sent to management with the weeks statistics.
 
 ## Purpose:
 
