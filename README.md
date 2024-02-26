@@ -1,5 +1,7 @@
-# Workflow:
+# Table of Contents
+
 - [Executive Summary](#executive-summary)
+- [Workflow](#workflow)
 - [Purpose](#purpose)
   - [What is monitored](#what-is-monitored)
   - [When does mnonitoring occur]()
@@ -21,6 +23,10 @@
 - [Potential Iterations](#potential-iterations)
 - [Further Mitigation](#further-mitigation)
 - [Citations](#citations)
+
+# Executive Summary
+
+# Workflow:
 
 ## Executive Summary:
 
